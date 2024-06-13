@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
     public int bulletsLeft;         // 子彈還有多少顆？(如果沒有要測試，你可以設定成 Private)
     public float reloadTime;        // 設定換彈夾所需要的時間
     public float recoilForce;       // 反作用力
-
+    public float Bulletspeed;
     bool reloading;             // 布林變數：儲存是不是正在換彈夾的狀態？True：正在換彈夾、False：換彈夾的動作已結束
 
     [Header("UI物件")]
@@ -54,7 +54,7 @@ public class Weapon : MonoBehaviour
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); // 在攻擊點上面產生一個子彈
             currentBullet.transform.forward = shootingDirection.normalized; // 將子彈飛行方向與射線方向一致
 
-            currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * 30, ForceMode.Impulse); // 依據飛行方向推送子彈
+            currentBullet.GetComponent<Rigidbody>().AddForce(currentBullet.transform.forward * Bulletspeed, ForceMode.Impulse); // 依據飛行方向推送子彈
             //currentBullet.GetComponent<Rigidbody>().AddForce(PlayerCamera.transform.up * , ForceMode.Impulse);
 
             bulletsLeft--;    // 將彈夾中的子彈減一，以下的寫法都是一樣的意思
